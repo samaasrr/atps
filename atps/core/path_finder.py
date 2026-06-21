@@ -8,10 +8,6 @@ from vulnerability_engine import assign_vulnerabilities, get_vulnerability_repor
 
 
 def find_all_paths_bfs(G, start="ATTACKER", max_depth=6):
-    """
-    BFS-based path finder. Finds all simple paths from start
-    to every other reachable node, up to max_depth.
-    """
     all_paths = []
     queue = [(start, [start])]
 
@@ -33,10 +29,6 @@ def find_all_paths_bfs(G, start="ATTACKER", max_depth=6):
 
 
 def find_all_paths_dfs(G, start="ATTACKER", max_depth=6):
-    """
-    DFS-based full path explorer, bounded by max_depth.
-    Returns every simple path from start node.
-    """
     all_paths = []
 
     def dfs(current, path):
@@ -57,17 +49,12 @@ def find_all_paths_dfs(G, start="ATTACKER", max_depth=6):
 
 
 def get_machine_only_paths(G, paths):
-    """
-    Filter paths down to only those that end on a Machine node
-    (i.e. actual attack targets, not services/vulns).
-    """
     machine_paths = []
     for path in paths:
         end_node = path[-1]
         if G.nodes[end_node].get("type") == "Machine":
             machine_paths.append(path)
     return machine_paths
-
 
 def print_path_summary(paths, label="All Paths"):
     print(f"\n  {label}: {len(paths)} found")

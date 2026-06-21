@@ -11,10 +11,6 @@ from path_finder import find_all_paths_bfs, get_machine_only_paths
 
 
 def path_to_dict(G, path):
-    """
-    Convert a raw path (list of node IDs) into structured data
-    with metadata about each hop.
-    """
     return {
         "path": path,
         "length": len(path) - 1,
@@ -31,9 +27,6 @@ def path_to_dict(G, path):
 
 
 def build_path_dataset(G, paths):
-    """
-    Convert a list of raw paths into a list of structured path dicts.
-    """
     return [path_to_dict(G, p) for p in paths]
 
 
